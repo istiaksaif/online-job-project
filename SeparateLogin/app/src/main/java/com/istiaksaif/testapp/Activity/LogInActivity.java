@@ -1,0 +1,251 @@
+package com.istiaksaif.testapp.Activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.istiaksaif.testapp.Model.User;
+import com.istiaksaif.testapp.R;
+
+import java.util.HashMap;
+
+public class LogInActivity extends AppCompatActivity {
+
+    private TextInputEditText email,password;
+    private EditText popup_email;
+    private MaterialButton logInButton,forgotButton;
+    private TextView signup;
+    private MaterialTextView forgotpassword;
+    private static  int RC_SIGN_IN =2;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ProgressDialog progressDialog;
+
+    private static final String TAG = "Authentication";
+    private FirebaseAuth.AuthStateListener authStateListener;
+    float v=0;
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private LottieAnimationView cross;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+        //signin by email
+        email = findViewById(R.id.emaillogin);
+        password = findViewById(R.id.passlogin);
+        logInButton = findViewById(R.id.login_btn);
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String Email = email.getText().toString().trim();
+                String Password = password.getText().toString().trim();
+
+
+                if (TextUtils.isEmpty(Email)) {
+                    Toast.makeText(LogInActivity.this, "please enter Email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(Password)) {
+                    Toast.makeText(LogInActivity.this, "please enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(
+                        LogInActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                showProgress();
+                                if (task.isSuccessful()) {
+                                    checkUserInfo();
+                                } else {
+                                    Toast.makeText(LogInActivity.this, task.getException().toString(),
+                                            Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LogInActivity.this, LogInActivity.class);
+                                    startActivity(intent);
+                                    progressDialog.dismiss();
+                                    finish();
+                                }
+                            }
+                        });
+            }
+        });
+
+
+        //intent registration activity
+        signup =(TextView) findViewById(R.id.registeractivity);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        //forgot_password
+        forgotpassword = findViewById(R.id.forgotpass);
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createpopupDiaglog();
+            }
+        });
+    }
+
+    private  void collectToken(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if(!task.isSuccessful()){
+                    return;
+                }
+                String token = task.getResult();
+                databaseReference.child("SeparateLogin").child("usersData").child(user.getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                databaseReference.child("SeparateLogin").child("usersData").child(snapshot.getKey())
+                                        .child("token")
+                                        .setValue(token);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+            }
+        });
+    }
+    private void checkUserInfo() {
+        showProgress();
+        FirebaseUser user = mAuth.getCurrentUser();
+        collectToken();
+        Query query = databaseReference.child("SeparateLogin").child("usersData").child(user.getUid());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("userType").getValue(String.class).equals("User")) {
+                    Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    progressDialog.dismiss();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    protected void onStart(){
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            checkUserInfo();
+        }
+    }
+
+    public void createpopupDiaglog(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View contactPopupView = getLayoutInflater().inflate(R.layout.popup,null);
+        popup_email = (EditText)contactPopupView.findViewById(R.id.emailforgot);
+        forgotButton = (MaterialButton) contactPopupView.findViewById(R.id.forgot_btn);
+
+        dialogBuilder.setView(contactPopupView);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        mAuth = FirebaseAuth.getInstance();
+        forgotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgotpassword();
+            }
+        });
+
+        cross = (LottieAnimationView) contactPopupView.findViewById(R.id.cross);
+        cross.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void forgotpassword(){
+        if(popup_email.getText().toString().equals("")){
+            popup_email.setError("please fill");
+        }
+        else {
+            showProgress();
+            mAuth.sendPasswordResetEmail(popup_email.getText().toString()).
+                    addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                progressDialog.dismiss();
+                                Toast.makeText(LogInActivity.this, "please check your email and " +
+                                        "reset password", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                            else{
+                                progressDialog.dismiss();
+                                Toast.makeText(LogInActivity.this, "Unsuccessful"+task.getException()
+                                        .toString(), Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        }
+                    });
+        }
+    }
+    private void showProgress(){
+        progressDialog = new ProgressDialog(LogInActivity.this);
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+    }
+}

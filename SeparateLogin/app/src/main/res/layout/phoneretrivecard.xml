@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/plan_normal"
+    android:orientation="vertical"
+    android:padding="7sp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_alignParentEnd="true">
+    <TextView
+        android:id="@+id/textPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 01700000054"
+        android:textSize="12dp"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/dark"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/numbg"
+        android:paddingLeft="8dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:drawableStart="@drawable/phone"
+        android:gravity="center"/>
+</LinearLayout>

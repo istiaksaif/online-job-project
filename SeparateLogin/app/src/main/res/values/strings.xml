@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Separate Login</string>
+    <string name="forgot_description">Enter your email address below and  we\'ll send you email with password</string>
+    <string name="button_text_forgot_password">Forgot your password?</string>
+    <string name="open">Open navigation drawer</string>
+    <string name="close">Close navigation drawer</string>
+    <string name="blank" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.3"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:fitsSystemWindows="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_logo"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".7"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:gravity="center">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/intent_login_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="MR LogIn"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="5dp"
+            tools:ignore="MissingPrefix"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="10sp"
+            android:layout_alignParentEnd="true"/>
+    </LinearLayout>
+</LinearLayout>

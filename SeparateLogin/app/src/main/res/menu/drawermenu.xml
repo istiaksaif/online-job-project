@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <item
+        android:id="@+id/icHome"
+        android:title="Home">
+
+    </item>
+    <item
+        android:id="@+id/icCity"
+        android:title="City Group">
+
+    </item>
+    <item
+        android:id="@+id/icProfile"
+        android:title="User Profile">
+    </item>
+    <item
+        android:id="@+id/icFeedback"
+        android:title="FeedBack">
+    </item>
+    <item
+        android:id="@+id/icprivacy"
+        android:title="Privacy Policy">
+
+    </item>
+    <item
+        android:id="@+id/icterms"
+        android:title="Terms of Service">
+
+    </item>
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="Log Out">
+
+    </item>
+</menu>
