@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private EditText newcompanyname;
-    private DatabaseReference dealerDatabaseRef;
+    private DatabaseReference dealerDatabaseRef,dd;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String uid = user.getUid();
 
@@ -101,6 +101,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         FirebaseMessaging.getInstance().subscribeToTopic(TYPE);
         firebaseAuth = FirebaseAuth.getInstance();
         dealerDatabaseRef = FirebaseDatabase.getInstance().getReference();
+        dd = FirebaseDatabase.getInstance().getReference();
 
         toolbar = findViewById(R.id.drawertoolbar);
         setSupportActionBar(toolbar);
@@ -435,6 +436,65 @@ private void getToken(String message,String title, String hisID) {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         dealerDatabaseRef.child("SeparateLogin").child("New-Companies").child(key).updateChildren(result);
                         Toast.makeText(HomeActivity.this,"Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                        String key1 = dd.child("Notification").push().getKey();
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("text", "feed message");
+                        map.put("uid", uid);
+                        map.put("id",key1);
+                        dd.child("Notification").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot1) {
+                                if(snapshot1.exists()) {
+                                    for(DataSnapshot dataSnapshot:snapshot1.getChildren()){
+                                        String match = dataSnapshot.child("uid").getValue(String.class);
+                                        String id = dataSnapshot.child("id").getValue(String.class);
+                                        if(match.equals(uid)){
+                                            dd.child("Notification").child(id).removeValue();
+                                            dd.child("Notification").child(key1).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    dd.child("Notification").child(key1).updateChildren(map);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }else {
+                                            dd.child("Notification").child(key1).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    dd.child("Notification").child(key1).updateChildren(map);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
+                                    }
+                                }else {
+                                    dd.child("Notification").child(key1).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            dd.child("Notification").child(key1).updateChildren(map);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -442,7 +502,7 @@ private void getToken(String message,String title, String hisID) {
 
                     }
                 });
-    }
+        }
     public void onBackPressed(){
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
