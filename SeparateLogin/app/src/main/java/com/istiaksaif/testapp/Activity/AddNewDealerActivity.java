@@ -144,16 +144,9 @@ public class AddNewDealerActivity extends AppCompatActivity {
                                     Phone ListItem = new Phone();
                                     try {
                                         String s = snapshot1.child("phoneNumber").getValue(String.class);
-                                        List<String> intArray = new ArrayList<>();
-                                        intArray.add(s);
-                                        int count = 0;
-                                        for (int i=0; i<intArray.size(); i++) {
-                                            if (s.equals(intArray.get(i))) {
-                                                count += 1;
-                                            }
-                                        }Toast.makeText(AddNewDealerActivity.this, count+"", Toast.LENGTH_SHORT).show();
+                                        String count = snapshot1.child("count").getValue().toString();
 
-                                        if(count==2){
+                                        if(Integer.parseInt(count)==1){
                                             addPhone.setVisibility(View.GONE);
                                         }else {
                                             addPhone.setVisibility(View.VISIBLE);
@@ -309,6 +302,7 @@ public class AddNewDealerActivity extends AppCompatActivity {
                         String PhoneNumber = phoneAdapter.mdata.get(i).getPhoneNumber();
                         HashMap<String, Object> result = new HashMap<>();
                         result.put("phoneNumber", PhoneNumber);
+                        result.put("count", i);
                         databaseReference.child("SeparateLogin").child("Dealers").child(key).
                                 child("phoneNumbers").child(unique).updateChildren(result);
                         Toast.makeText(AddNewDealerActivity.this, "Dealer Added!", Toast.LENGTH_SHORT).show();

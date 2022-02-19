@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,11 +21,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.istiaksaif.testapp.R;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 import com.squareup.picasso.Picasso;
 
-public class ProfileActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    private TextView userName,email,companyName,editProfile,division,mobileNo,headQuarter,designation;
+public class ProfileActivity extends AppCompatActivity implements PaymentResultListener {
+
+    private TextView userName,email,companyName,editProfile,division,mobileNo,headQuarter,designation,payment;
     private ImageView imageView,verifyimage;
     private Toolbar toolbar;
     private DatabaseReference databaseReference;
@@ -60,6 +66,26 @@ public class ProfileActivity extends AppCompatActivity {
         headQuarter = findViewById(R.id.textHeadQuarter);
         verifyimage = findViewById(R.id.verifyimage);
         editProfile = findViewById(R.id.editProfile);
+        payment = findViewById(R.id.payment);
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Checkout checkout = new Checkout();
+                //need id
+                checkout.setKeyID("");
+                checkout.setImage(R.drawable.ic_logo);
+                JSONObject object = new JSONObject();
+                try {
+                    object.put("name","prefs.getName();");
+                    object.put("description","Subscription Fee");
+                    object.put("currency","INR");
+                    object.put("amount","100");
+                    checkout.open(ProfileActivity.this,object);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -117,5 +143,18 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Some Thing Wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Payment Id");
+        builder.setMessage(s);
+        builder.show();
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(ProfileActivity.this, s, Toast.LENGTH_SHORT).show();
     }
 }
