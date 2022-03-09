@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -67,25 +68,6 @@ public class ProfileActivity extends AppCompatActivity implements PaymentResultL
         verifyimage = findViewById(R.id.verifyimage);
         editProfile = findViewById(R.id.editProfile);
         payment = findViewById(R.id.payment);
-        payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Checkout checkout = new Checkout();
-                //need id
-                checkout.setKeyID("");
-                checkout.setImage(R.drawable.ic_logo);
-                JSONObject object = new JSONObject();
-                try {
-                    object.put("name","prefs.getName();");
-                    object.put("description","Subscription Fee");
-                    object.put("currency","INR");
-                    object.put("amount","100");
-                    checkout.open(ProfileActivity.this,object);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -111,6 +93,12 @@ public class ProfileActivity extends AppCompatActivity implements PaymentResultL
                     mobileNo.setText(receivephone);
                     headQuarter.setText(HeadQ);
                     designation.setText(Designation);
+                    payment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startPayment(name,retriveEmail,receivephone);
+                        }
+                    });
 
                     if (Status.equals("")){
                         verifyimage.setVisibility(View.GONE);
@@ -145,12 +133,34 @@ public class ProfileActivity extends AppCompatActivity implements PaymentResultL
         });
     }
 
+    private void startPayment(String name,String email,String phone) {
+        Checkout checkout = new Checkout();
+        //need id
+        checkout.setKeyID("rzp_test_g4FlsWHIFk146o");
+        final Activity activity = this;
+
+        try {
+            JSONObject object = new JSONObject();
+            object.put("name",name);
+            object.put("description","Subscription Fee");
+            object.put("currency","INR");
+            object.put("amount","1000");
+            object.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
+            object.put("prefill.email", email);
+            object.put("prefill.contact",phone);
+            checkout.open(activity,object);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onPaymentSuccess(String s) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Payment Id");
-        builder.setMessage(s);
-        builder.show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Payment Id");
+//        builder.setMessage(s);
+//        builder.show();
+        Toast.makeText(ProfileActivity.this, "Payment Successful"+s, Toast.LENGTH_SHORT).show();
     }
 
     @Override
