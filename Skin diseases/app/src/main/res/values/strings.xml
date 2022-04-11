@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">dermaLab</string>
+    <string name="blank"> </string>
+    <string name="s0">A chronic skin disease that causes persistent redness over the areas of the face and nose that normally blush: mainly the forehead, the chin, and the lower half of the nose.</string>
+    <string name="s1">Eczema is a condition that makes your skin red and itchy. It is common in children but can occur at any age. Atopic dermatitis is long lasting (chronic) and tends to flare periodically.</string>
+    <string name="s2">Herpes is an infection that is caused by a herpes simplex virus (HSV). Oral herpes causes cold sores around the mouth or face. Genital herpes affects the genitals, buttocks or anal area. It affects the genitals, buttocks or anal area.</string>
+    <string name="s3">Melanoma is a type of skin cancer (the cells that give the skin its tan or brown color). Cancer starts when cells in the body begin to grow out of control. Cells in nearly any part of the body can become cancer, and can then spread to other areas of the body.</string>
+    <string name="s5">Actinic keratoses are dry scaly patches of skin that have been damaged by the sun. The patches are not usually serious. But there is a small chance they could become skin cancer, so it is important to careful.</string>
+    <string name="s6">Basal cell carcinomas are usually found on areas of the body exposed to the sun. Cancer that begins in the lower part of the epidermis (the outer layer of the skin). It may appear as a small white or flesh-colored bump that grows slowly and may bleed.</string>
+    <string name="s7">Benign refers to a condition, tumor, or growth that is not cancerous. This means that it does not spread to other parts of the body. It does not invade nearby tissue. In general, a benign tumor grows slowly and is not harmful</string>
+    <string name="s9">Malignant and its opposite benign are medical terms used to describe a tumor or growth as either cancerous or not respectively. The gn part of both words comes from the Latin word for born, but the word root mal means "evil," while bene means "kind."
+       \n A malignant tumor grows uncontrollably and spreads to other parts of the body.</string>
+    <string name="s10">Nevus (plural nevi) is a nonspecific medical term for a visible, circumscribed, chronic lesion of the skin or mucosa. A nevus is usually dark and may be raised from the skin.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
