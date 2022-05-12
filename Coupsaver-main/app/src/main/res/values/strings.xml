@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">MOC</string>
+    <string name="web_client_id" translatable="false">198028885283-uu7rhkskj1vraebglup1eg712ga9t4bs.apps.googleusercontent.com</string>
+    <string name="chicken_curry">Chicken Curry</string>
+    <string name="catalog_number">Catalog Number</string>
+    <string name="expires_on">Expires On</string>
+    <string name="archived_items">Archived Items</string>
+    <string name="search_food_items">Search Food Items</string>
+    <string name="all_food">All Food</string>
+    <string name="vegetable">vegetable</string>
+    <string name="fruit">fruit</string>
+    <string name="fast_food">fast food</string>
+    <string name="milk">milk</string>
+    <string name="meat">meat</string>
+    <string name="category">Category</string>
+    <string name="sell_items">Sell Items</string>
+    <string name="price">Price</string>
+    <string name="expire_date">Expire Date</string>
+    <string name="item_price">Item Price</string>
+    <string name="day">1 day</string>
+    <string name="week">1 week</string>
+    <string name="month">1 month</string>
+    <string name="filter">Filter</string>
+    <string name="to">to</string>
+    <string name="from">from</string>
+    <string name="enter_phone_number_to_get_OTP">Enter Phone number to get OTP:</string>
+    <string name="phone">Phone</string>
+    <string name="Verify_phone_number">Verify phone number</string>
+    <string name="verify">VERIFY</string>
+    <string name="sell_food">Sell Food</string>
+    <string name="name">Name</string>
+    <string name="seller_name">Seller Name</string>
+    <string name="seller_phone">Seller Phone</string>
+    <string name="sell">Sell</string>
+    <string name="add_food">Add Food</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="select_expiration_date">Select Expiration Date</string>
+    <string name="select_category">Select Category</string>
+    <string name="add">ADD</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="do_you_want_to_archive">Do you want to Archive</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="item_for_sell">Item for Sell</string>
+    <string name="share_details">Share Details </string>
+    <string name="select_to_share">Select to Share</string>
+    <string name="translated">Translated</string>
+    <string name="sale_foods">Sale Foods</string>
+    <string name="archive_foods">Archive Foods</string>
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
+    <string name="select_a_language">Select a Language</string>
+
+    <string name="MoviesShows">Movies &amp; Shows</string>
+    <string name="Shopping">Shopping</string>
+    <string name="RestaurantFastFood">Restaurants &amp; FastFood</string>
+    <string name="Other">Other</string>
+
+    <string name="Provider">Provider</string>
+    <string name="Pais">Pais</string>
+    <string name="LeumiGoodys">LeumiGoodys</string>
+    <string name="Americanexpress">American express</string>
+    <string name="Htzone">Htzone</string>
+
+    <string name="select_provider">Select Provider</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2049625210658756~6795839069</string>
+    <string name="interstitialAd" translatable="false">ca-app-pub-2049625210658756/6095348523</string>
+    <string name="admob_banner" translatable="false">ca-app-pub-2049625210658756/3235227379</string>
+    <string name="notification_msg">New food detected\nClick if you want to insert</string>
+
+
+    <string name="product_details">Product Details</string>
+    <string name="catalogNumber">Catalog Number</string>
+    <string name="ExpiryDate">Expiry Date</string>
+    <string name="catalogCopied">Catalog Number Copied</string>
+    <string name="shareMsg">I shared via the Mock app! Download - Link</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="password">Password</string>
+    <string name="dont_have_account">Don\'t have an account? <b>Sign Up</b></string>
+    <string name="already_have_account">Already have an account? <b>Log In</b></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="loginWithPhone">Login with phone number</string>
+    <string name="invalid_email">Email is invalid</string>
+    <string name="invalid_password">Password must be at least 6 digits long</string>
+    <string name="email_already_in_use">Email is already in use</string>
+    <string name="wrong_password">The password is invalid or the user does not have a password.</string>
+
+    <string name="forgetPassword">Forget password?</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset_password_msg">Do you want to reset password?</string>
+    <string name="reset_password_link_msg">An email with reset password link is sent to following email address.\n</string>
+    <string name="no_account_found">There is no account with this email address</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open</string>
+    <string name="navigation_drawer_close" translatable="false">Close</string>
+
+    <string name="notification_listener_service" translatable="false">"Notification Listener Service"</string>
+    <string name="notification_listener_service_explanation" translatable="false">"For the the app. to work you need to enable the Notification Listener Service. Enable it now?"</string>
+
+    <string name="active_notification_count_zero" translatable="false">No active notification</string>
+    <plurals name="active_notification_count_nonzero">
+        <item quantity="one">%d active notification</item>
+        <item quantity="other">%d active notifications</item>
+    </plurals>
+</resources>

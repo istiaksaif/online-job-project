@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/upload_screen_btn"
+        android:icon="@drawable/ic_settinglines"
+        android:title="@string/add_food"
+        />
+
+    <item
+        android:id="@+id/sale_items_btn"
+        android:icon="@drawable/ic_shopping"
+        android:title="@string/sale_foods" />
+
+    <item
+        android:id="@+id/archive_items_btn"
+        android:icon="@drawable/ic_archives"
+        android:title="@string/archive_foods" />
+
+    <item
+        android:id="@+id/language"
+        android:icon="@drawable/ic_language"
+        android:title="@string/language" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
+
+</menu>

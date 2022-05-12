@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="category" >
+        <item>סרטים ומופעים</item>
+        <item>קניות</item>
+        <item>מסעדות ומזון מהיר</item>
+        <item>אחר</item>
+    </string-array>
+
+    <string-array name="provider" >
+        <item>פיס</item>
+        <item>לאומי גודיז</item>
+        <item>אמריקן אקספרס</item>
+        <item>הייטקזון</item>
+        <item>אחר</item>
+    </string-array>
+
+</resources>

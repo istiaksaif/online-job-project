@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MOC</string>
+    <string name="chicken_curry">עוף בקארי</string>
+    <string name="catalog_number">קוד שובר</string>
+    <string name="expires_on">תוקף למימוש</string>
+    <string name="archived_items">שוברים שמומשו</string>
+    <string name="search_food_items">חיפוש שוברים</string>
+    <string name="all_food">כל השוברים</string>
+    <string name="vegetable">ירקות</string>
+    <string name="fruit">פירות</string>
+    <string name="fast_food">אוכל מהיר</string>
+    <string name="milk">חלב</string>
+    <string name="meat">בשר</string>
+    <string name="category">קטגוריה</string>
+
+    <string name="price">מחיר</string>
+    <string name="expire_date">תוקף למימוש</string>
+    <string name="item_price">מחיר שובר</string>
+    <string name="day">יום אחד</string>
+    <string name="week">שבוע אחד</string>
+    <string name="month">חודש אחד</string>
+    <string name="filter">סינון</string>
+    <!--<string name="to">ל</string>-->
+    <string name="to">עד</string>
+    <string name="from">מ</string>
+    <string name="login">התחברות</string>
+    <string name="enter_phone_number_to_get_OTP">הכנס מספר טלפון לאימות</string>
+    <string name="phone">טלפון</string>
+    <string name="Verify_phone_number">אימות מספר טלפון</string>
+    <string name="verify">אימות</string>
+    <string name="sell_food">מכירת שוברים</string>
+    <string name="name">שם</string>
+    <string name="seller_name">שם מוכר</string>
+    <string name="seller_phone">טלפון מוכר</string>
+    <string name="sell">פרסם למכירה</string>
+    <string name="add_food">הוסף שובר</string>
+    <string name="expiration_date">תוקף למימוש</string>
+    <string name="select_expiration_date">בחר תוקף למימוש</string>
+    <string name="select_category">בחר קטגוריה</string>
+    <string name="add">הוסף</string>
+    <string name="confirmation">אישור</string>
+    <string name="do_you_want_to_archive">האם לסמן את השובר כמומש</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="item_for_sell">שובר למכירה</string>
+    <string name="share_details">שתף </string>
+    <string name="select_to_share">בחר לשיתוף</string>
+    <string name="translated">已翻譯</string>
+
+    <!--<string name="sale_foods">מכירות מזון</string>-->
+    <string name="sell_items">לוח קניה ומכירה</string>
+    <string name="sale_foods">לוח קניה ומכירה</string>
+    <string name="archive_foods">שוברים שמומשו</string>
+    <string name="logout">להתנתק</string>
+    <string name="language">שפה</string>
+    <string name="select_a_language">בחר שפה</string>
+
+    <string name="MoviesShows">סרטים ומופעים</string>
+    <string name="Shopping">קניות</string>
+    <string name="RestaurantFastFood">מסעדות ומזון מהיר</string>
+    <string name="Other">אחר</string>
+
+    <string name="Provider">ספק</string>
+    <string name="Pais">פיס</string>
+    <string name="LeumiGoodys">לאומי גודיז</string>
+    <string name="Americanexpress">אמריקן אקספרס</string>
+    <string name="Htzone">הייטקזון</string>
+    <string name="select_provider">בחר ספק</string>
+    <string name="notification_msg">נמצא שובר חדש! לחץ להוספה</string>
+
+
+
+    <string name="product_details">פרטי מוצר</string>
+    <string name="catalogCopied">קוד שובר הועתק בהצלחה</string>
+    <string name="catalogNumber">קוד שובר</string>
+    <string name="ExpiryDate">תאריך אחרון למימוש</string>
+    <string name="shareMsg">שיתפתי באמצעות אפליקציית מוק! להורדה - לינק</string>
+
+
+    <string name="email">כתובת מייל</string>
+    <string name="enter_email">הכנס כתובת מייל</string>
+    <string name="enter_password">הכנס סיסמה</string>
+    <string name="password">סיסמה</string>
+    <string name="dont_have_account">אין לך חשבון?<b>להרשמה</b></string>
+    <string name="already_have_account">כבר רשום? <b>להתחברות</b></string>
+    <string name="sign_up">הרשמה</string>
+    <string name="loginWithPhone">כניסה עם מספר פלאפון</string>
+    <string name="invalid_email">כתובת המייל לא תקינה</string>
+    <string name="invalid_password">סיסמה צריכה להיות עם מינימום 6 תווים</string>
+    <string name="email_already_in_use">כתובת המייל כבר בשימוש</string>
+    <string name="wrong_password">סיסמה לא נכונה. נא לנסות שוב.</string>
+
+    <string name="forgetPassword">שכחתי סיסמה</string>
+    <string name="reset_password">איפוס סיסמה</string>
+    <string name="reset_password_msg">האם אתה מעוניין באיפוס סיסמה ?</string>
+    <string name="reset_password_link_msg">מייל איפוס סיסמה יישלח לכתובת\n</string>
+    <string name="no_account_found"> לא קיים חשבון עם כתובת המייל הזו</string>
+
+
+</resources>

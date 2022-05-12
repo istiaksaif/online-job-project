@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/login"
+        android:textColor="@color/black"
+        android:textSize="36dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/enter_phone_number_to_get_OTP"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_smartphone"
+                        app:tint="@color/darkgrey" />
+
+                    <LinearLayout
+                        android:layout_width="2dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:background="#b8b9be" />
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        app:ccpDialog_backgroundColor="@color/white"
+                        app:ccpDialog_keyboardAutoPopup="false"
+                        app:ccp_defaultNameCode="IL"
+                        app:ccp_showFlag="true"
+                        app:ccp_showNameCode="false"
+                        app:ccp_textSize="18dp" />
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edittext_phonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/primarycursor"
+                    android:textSize="18dp"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

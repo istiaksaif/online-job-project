@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "686744234074",
+    "firebase_url": "https://data-share-on-drive-default-rtdb.firebaseio.com",
+    "project_id": "data-share-on-drive",
+    "storage_bucket": "data-share-on-drive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686744234074:android:6b44e3598da2fdf0001063",
+        "android_client_info": {
+          "package_name": "com.rtapps.moc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686744234074-cutqckco4h50fm6qmuno3is02ddt0f0a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rtapps.moc",
+            "certificate_hash": "6dff9f07f94305e23beab4f6e989d91d86dbf756"
+          }
+        },
+        {
+          "client_id": "686744234074-rf102a3e3u73ai7bhml5up4gb2iktl9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV2_z9yKYticRst_OMZ0VzyQoEKZGvIXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686744234074-rf102a3e3u73ai7bhml5up4gb2iktl9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

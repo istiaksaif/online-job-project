@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category" >
+        <item>Movies &amp; Shows</item>
+        <item>Shopping</item>
+        <item>Restaurants &amp; FastFood</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="provider" >
+        <item>Pais</item>
+        <item>LeumiGoodys</item>
+        <item>American express</item>
+        <item>Htzone</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
+
+<!-- Add Provider column Instead of price column.
+Translation text is - "ספק"
+Will be a dropdown list with options -
+Pais (פיס)
+LeumiGoodys (לאומי גודיז)
+American express (אמריקן אקספרס)
+Htzone (הייטקזון)
+Other (אחר)
+
+
+
+
+Movies&Shows - סרטים ומופעים
+Shopping - קניות
+Restaurants&FastFood - מסעדות ומזון מהיר
+Other - אחר
+
+
+        <item>vegetables</item>
+        <item>fruit</item>
+        <item>fast food</item>
+        <item>milk</item>
+        <item>meat</item>
+-->

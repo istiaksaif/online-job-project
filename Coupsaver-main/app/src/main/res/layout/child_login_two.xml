@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/back_button"
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="14sp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+
+                android:layout_width="22dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_black_back_button" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36dp"
+
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="20dp"
+            android:text="@string/Verify_phone_number" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.mukesh.OtpView
+                android:layout_marginBottom="20dp"
+                android:id="@+id/otp_view"
+                android:inputType="phone"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:cursorVisible="true"
+
+                android:focusableInTouchMode="true"
+                android:itemBackground="@drawable/border_grey_radius"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                app:OtpCursorColor="@color/black"
+                app:OtpCursorWidth="2dp"
+                app:OtpItemCount="6"
+                app:OtpItemHeight="55dp"
+                app:OtpItemSpacing="12dp"
+                app:OtpItemWidth="45dp" />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:textColor="@color/white"
+            android:id="@+id/verify_opt_btn"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/verify">
+
+
+        </Button>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
