@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".Activity.EditProfileActivity">
+    <RelativeLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark"
+            app:layout_collapseMode="pin"
+            app:contentInsetStartWithNavigation="0sp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        </androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Edit Profile"
+            android:textColor="@color/textColor"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        android:layout_below="@id/l1"
+        android:id="@+id/l2"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/l4"
+        android:layout_below="@+id/l2"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark"
+            android:orientation="vertical"
+            android:padding="10sp">
+
+            <RelativeLayout
+                android:id="@+id/l3"
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5sp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/imgcard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="0sp"
+                    android:elevation="5sp"
+                    app:cardBackgroundColor="@color/white_redis"
+                    app:cardCornerRadius="60sp"
+                    app:cardElevation="4sp">
+
+                    <ImageView
+                        android:id="@+id/profileimage"
+                        android:layout_width="120sp"
+                        android:layout_height="120sp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/blank"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/pro_image" />
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:layout_width="15sp"
+                    android:layout_height="15sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent_bg"
+                    android:contentDescription="@string/blank"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_pen" />
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/transparent_bg"
+                android:inputType="textPersonName"
+                android:paddingStart="15dp"
+                android:pointerIcon="text"
+                android:text="User name"
+                android:textAppearance="@style/Style_edit_profile_edittext_name"
+                android:textColor="@color/textColor" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/transparent_bg"
+                android:inputType="textPersonName"
+                android:paddingStart="15dp"
+                android:pointerIcon="text"
+                android:text="Software Developer"
+                android:textAppearance="@style/Style_edit_profile_edittext"
+                android:textColor="@color/textColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:letterSpacing=".01"
+                    android:padding="5sp"
+                    android:text="Email Address"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:background="@drawable/bgprofileedittext"
+                    android:hint="user.email@mail.com"
+                    android:inputType="textEmailAddress"
+                    android:padding="8sp"
+                    android:paddingStart="10dp"
+                    android:textAppearance="@style/Style_profile_edittext"
+                    android:textColor="@color/dark"
+                    android:textColorHint="@color/grey"
+                    app:hintTextAppearance="@style/Style_profile_edittext_hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:letterSpacing=".01"
+                    android:padding="5sp"
+                    android:text="Phone"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:background="@drawable/bgprofileedittext"
+                    android:hint="+880 123123974"
+                    android:inputType="phone"
+                    android:padding="8sp"
+                    android:paddingStart="10dp"
+                    android:textAppearance="@style/Style_profile_edittext"
+                    android:textColor="@color/dark"
+                    android:textColorHint="@color/grey"
+                    app:hintTextAppearance="@style/Style_profile_edittext_hint" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:letterSpacing=".01"
+                    android:padding="5sp"
+                    android:text="Address"
+                    android:textColor="@color/textColor"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="10sp"
+                    android:layout_marginEnd="10sp"
+                    android:background="@drawable/bgprofileedittext"
+                    android:hint="Nikunjo-2, Khilkhet-1229, Dhaka, Bangladesh"
+                    android:inputType="text"
+                    android:padding="5sp"
+                    android:paddingStart="10dp"
+                    android:textAppearance="@style/Style_profile_edittext"
+                    android:textColor="@color/dark"
+                    android:textColorHint="@color/grey"
+                    app:hintTextAppearance="@style/Style_profile_edittext_hint" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/l4"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_above="@+id/joineddatelay"
+        android:background="@color/black"
+        android:layout_marginBottom="5sp"/>
+    <LinearLayout
+        android:id="@+id/joineddatelay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginEnd="20sp"
+        android:layout_marginStart="20sp">
+        <TextView
+            android:id="@+id/joineddate"
+            android:layout_width="0sp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Joined "
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            android:letterSpacing=".01"
+            android:padding="5sp"
+            android:layout_gravity="center_vertical"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/savebutton"
+            android:layout_width="0sp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10sp"
+            android:background="@color/pink"
+            app:cardElevation="0dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:background="@color/pink"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="20sp"
+                android:padding="10sp"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>

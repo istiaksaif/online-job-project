@@ -1,0 +1,15 @@
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:background="@color/transparent_bg"
+    app:cardElevation="0dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:id="@+id/productimage"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@color/white_redis"
+        android:scaleType="center"
+        android:transitionName="image"/>
+</androidx.cardview.widget.CardView>

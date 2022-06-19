@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "208338122579",
+    "project_id": "highlymotavated-ecomerceapp",
+    "storage_bucket": "highlymotavated-ecomerceapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208338122579:android:443b1d225fe914e5a413a6",
+        "android_client_info": {
+          "package_name": "com.istiaksaif.highlymotavated"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208338122579-99mr6tqpaud6v3cf2nt9uclb38e7ch9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZDZjTLPEAwE1Osligb_IeqYnHmFKjP3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208338122579-99mr6tqpaud6v3cf2nt9uclb38e7ch9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

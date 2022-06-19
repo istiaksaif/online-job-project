@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dark"
+    android:padding="15sp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Enter your Top Up amount"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        android:letterSpacing=".01"
+        android:padding="5sp"
+        android:layout_marginTop="20sp"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/topupamount"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:paddingStart="10dp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:padding="8sp"
+        android:inputType="number"
+        android:drawableStart="@drawable/ic_dolor"
+        android:hint=" 100"
+        android:maxLength="8"
+        android:gravity="center_vertical"
+        android:background="@drawable/bgprofileedittext"
+        android:textColor="@color/textColor"
+        android:textColorHint="@color/grey"
+        android:textAppearance="@style/Style_profile_edittext"
+        app:hintTextAppearance="@style/Style_profile_edittext_hint"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lay1"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="minimum top up $10"
+        android:textColor="@color/white_redis"
+        android:textSize="10sp"
+        android:transitionName="bid_warning" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lay1"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="start"
+        android:padding="5dp"
+        android:text="Select your desire payment method"
+        android:textColor="@color/textColor"
+        android:textSize="12sp"
+        android:transitionName="bid_warning"
+        android:layout_marginTop="10sp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/stripebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/white_redis"
+        android:transitionName="bidbutton"
+        android:layout_margin="10sp">
+        <ImageView
+            android:layout_width="90sp"
+            android:layout_height="50sp"
+            android:src="@drawable/ic__stripe"
+            android:padding="10sp"
+            android:layout_gravity="center"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/paypalbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/white_redis"
+        android:layout_margin="10sp">
+        <ImageView
+            android:layout_width="90sp"
+            android:layout_height="50sp"
+            android:src="@drawable/ic__paypal"
+            android:padding="10sp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
