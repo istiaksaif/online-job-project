@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,8 +68,6 @@ public class MyPostActivity extends AppCompatActivity {
             }
         });
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        productItemArrayList = new ArrayList<>();
-
         productrecycler = findViewById(R.id.myPostRecycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -96,6 +95,7 @@ public class MyPostActivity extends AppCompatActivity {
                         for (DataSnapshot snapshot2: snapshot.child("Images").getChildren()){
                             String images = snapshot2.child("productImage").getValue(String.class);
                             imageArray.add(images);
+                            item.setImageCount(imageArray.size());
                             item.setProductImage(imageArray.get(0));
                         }
                         item.setProductDescription(snapshot.child("productDescription").getValue().toString());

@@ -69,8 +69,8 @@ public class AddProductActivity extends AppCompatActivity {
     private ProgressDialog pro;
     private Uri image;
     private ArrayList<Uri> imageUriList;
-    private ArrayList<Uri> imageList = new ArrayList<Uri>();
-//    private List<SliderImageModel> sliderList = new ArrayList<>();
+    private ArrayList<String>imageKey,sendProductId;
+//    private ArrayList<Uri> imageList = new ArrayList<Uri>();
     private RecyclerView imageRecycler;
     private RecyclerImageAdapter recyclerImageAdapter;
     private RelativeLayout afterAddedLayout;
@@ -90,12 +90,14 @@ public class AddProductActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         imageUriList = new ArrayList<>();
+        imageKey = new ArrayList<>();
+        sendProductId = new ArrayList<>();
         imageRecycler = findViewById(R.id.recycler_image);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         imageRecycler.setLayoutManager(layoutManager);
         imageRecycler.setHasFixedSize(true);
-        recyclerImageAdapter = new RecyclerImageAdapter(imageUriList,this);
+        recyclerImageAdapter = new RecyclerImageAdapter(imageUriList,imageKey,sendProductId,this);
         imageRecycler.setAdapter(recyclerImageAdapter);
 
         toolbar = findViewById(R.id.toolbar);
@@ -171,7 +173,7 @@ public class AddProductActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadToFirebase(image);
+                uploadToFirebase();
             }
         });
         afterAddedLayout = findViewById(R.id.addedlayout);
@@ -180,11 +182,11 @@ public class AddProductActivity extends AppCompatActivity {
         addproductImage = findViewById(R.id.added_productimage);
         backToHome = findViewById(R.id.back_home);
         addAnother = findViewById(R.id.add_new);
-
     }
 
     private void GetDataFromFirebase(String productId) {
         List<String> imageArray = new ArrayList<>();
+        List<String> keyArray = new ArrayList<>();
         Query query = databaseReference.child("Products").child(productId).child("Images");
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -192,11 +194,14 @@ public class AddProductActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     String images = dataSnapshot.child("productImage").getValue(String.class);
                     imageArray.add(images);
-                    Toast.makeText(AddProductActivity.this, ""+imageArray.size(), Toast.LENGTH_LONG).show();
+                    String imageskey = dataSnapshot.getKey();
+                    keyArray.add(imageskey);
                 }
                 for(int i=0; i<imageArray.size(); i++){
                     imageUriList.add(Uri.parse(imageArray.get(i)));
+                    imageKey.add(keyArray.get(i));
                 }
+                sendProductId.add(productId);
             }
 
             @Override
@@ -206,7 +211,7 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadToFirebase(Uri uri) {
+    private void uploadToFirebase() {
         String productId = databaseReference.child(uid).push().getKey();
         String ProName = productName.getText().toString().trim();
         String ProDes = productDescription.getText().toString().trim();
@@ -267,7 +272,8 @@ public class AddProductActivity extends AppCompatActivity {
                 result.put("productId",productId);
                 for(count = 0; count<imageUriList.size(); count++){
                     Uri imgUri = imageUriList.get(count);
-                    final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child(imageUriList.get(count).getLastPathSegment()+"."+System.currentTimeMillis() + "." + getContentResolver());
+//                    final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child(imageUriList.get(count).getLastPathSegment()+"."+System.currentTimeMillis() + "." + getContentResolver());
+                    final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child("image"+count);
                     databaseReference.child("Products").child(productId).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
