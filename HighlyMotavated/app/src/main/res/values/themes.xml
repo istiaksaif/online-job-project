@@ -46,12 +46,6 @@
         <item name="android:windowSharedElementEnterTransition">@transition/shared_tran</item>
         <item name="android:windowSharedElementExitTransition">@transition/shared_tran</item>
     </style>
-<!--    <style name="NumberPickerCustomText">-->
-<!--        <item name="android:textSize">24sp</item>-->
-<!--        <item name="android:fontFamily">@font/eczar_semibold</item>-->
-<!--        <item name="colorControlNormal">@color/dark_blue</item>-->
-<!--        <item name="android:textColorPrimary">@color/dark_blue</item>-->
-<!--    </style>-->
     <style name="Style_Menu_TextView">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">14sp</item>

@@ -14,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".95"
-        android:background="@drawable/img"
-        android:fitsSystemWindows="true">
+        android:background="@drawable/icon"
+        android:fitsSystemWindows="true"
+        android:alpha=".5">
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1.75"

@@ -78,14 +78,15 @@ public class ReferActivity extends AppCompatActivity {
     public void createlink(){
         Log.e("main", "create link ");
         DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse("https://play.google.com/"))
+                .setLink(Uri.parse("https://cutt.ly/highlymotavated"))
                 .setDynamicLinkDomain("highlymotavatedecommerce.page.link")
                 .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
                 .buildDynamicLink();
         Uri dynamicLinkUri = dynamicLink.getUri();
         Log.e("main", "  Long refer "+ dynamicLink.getUri());
         String sharelinktext  = "https://highlymotavatedecommerce.page.link/?"+
-                "link=https://play.google.com/store/apps?referUser="+key+"_"+uid+
+                "link=https://cutt.ly/highlymotavated?referUser="+key+"_"+uid+
+                //https://play.google.com/store/apps
                 //"link=http://www.highlymotavated.com/myref.php?referUser="+key+"_"+uid+
                 "&apn="+ getPackageName()+
                 "&st="+"My Refer Link"+

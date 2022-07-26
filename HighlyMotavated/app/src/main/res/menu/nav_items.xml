@@ -27,10 +27,10 @@
         android:id="@+id/notification"
         android:icon="@drawable/ic_notification"
         android:title="Notification" />
-    <item
-        android:id="@+id/faq"
-        android:icon="@drawable/ic_faq"
-        android:title="FAQ" />
+<!--    <item-->
+<!--        android:id="@+id/faq"-->
+<!--        android:icon="@drawable/ic_faq"-->
+<!--        android:title="FAQ" />-->
     <item
         android:id="@+id/refer"
         android:icon="@drawable/ic_refer"

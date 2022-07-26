@@ -188,7 +188,7 @@ public class PostProductListAdapter extends RecyclerView.Adapter<PostProductList
                                         .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Toast.makeText(context, "delete done", Toast.LENGTH_LONG).show();
+
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
@@ -197,6 +197,7 @@ public class PostProductListAdapter extends RecyclerView.Adapter<PostProductList
                                             }
                                         });
                             }
+                            Toast.makeText(context, "delete done", Toast.LENGTH_LONG).show();
                         }
                     });
                 }

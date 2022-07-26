@@ -41,7 +41,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.istiaksaif.highlymotavated.Adapter.RecyclerImageAdapter;
 import com.istiaksaif.highlymotavated.Model.ProductItem;
-import com.istiaksaif.highlymotavated.Model.SliderImageModel;
 import com.istiaksaif.highlymotavated.R;
 import com.istiaksaif.highlymotavated.Utils.GetServerTime;
 import com.istiaksaif.highlymotavated.Utils.ImageGetHelper;
@@ -70,7 +69,6 @@ public class AddProductActivity extends AppCompatActivity {
     private Uri image;
     private ArrayList<Uri> imageUriList;
     private ArrayList<String>imageKey,sendProductId;
-//    private ArrayList<Uri> imageList = new ArrayList<Uri>();
     private RecyclerView imageRecycler;
     private RecyclerImageAdapter recyclerImageAdapter;
     private RelativeLayout afterAddedLayout;
@@ -155,7 +153,7 @@ public class AddProductActivity extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             if (getIntent().getStringExtra("intentType").equals("edit")) {
                 productItem = (ProductItem) getIntent().getSerializableExtra("productObjects");
-                GetDataFromFirebase(productItem.getProductId());
+                GetDataFromFirebase(productItem.getProductId(),"null");
                 productName.setText(productItem.getProductName());
                 productDescription.setText(productItem.getProductDescription());
                 productPrice.setText(productItem.getProductPrice());
@@ -173,7 +171,11 @@ public class AddProductActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadToFirebase();
+                if(getIntent().getExtras() != null && getIntent().getStringExtra("intentType").equals("edit")){
+                    GetDataFromFirebase(productItem.getProductId(),"edit");
+                }else {
+                    uploadToFirebase(null,"new");
+                }
             }
         });
         afterAddedLayout = findViewById(R.id.addedlayout);
@@ -184,7 +186,7 @@ public class AddProductActivity extends AppCompatActivity {
         addAnother = findViewById(R.id.add_new);
     }
 
-    private void GetDataFromFirebase(String productId) {
+    private void GetDataFromFirebase(String productId,String intentType) {
         List<String> imageArray = new ArrayList<>();
         List<String> keyArray = new ArrayList<>();
         Query query = databaseReference.child("Products").child(productId).child("Images");
@@ -197,11 +199,21 @@ public class AddProductActivity extends AppCompatActivity {
                     String imageskey = dataSnapshot.getKey();
                     keyArray.add(imageskey);
                 }
-                for(int i=0; i<imageArray.size(); i++){
-                    imageUriList.add(Uri.parse(imageArray.get(i)));
-                    imageKey.add(keyArray.get(i));
+                if (intentType.equals("edit")){
+                    try {
+                        uploadToFirebase(imageArray, "edit");
+                    }catch (Exception e){
+
+                    }
+                }else {
+                    for(int i=0; i<imageArray.size(); i++){
+                        imageUriList.add(Uri.parse(imageArray.get(i)));
+                        imageKey.add(keyArray.get(i));
+                        if(imageUriList.size()==5)
+                            productImage.setVisibility(View.GONE);
+                    }
+                    sendProductId.add(productId);
                 }
-                sendProductId.add(productId);
             }
 
             @Override
@@ -211,7 +223,7 @@ public class AddProductActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadToFirebase() {
+    private void uploadToFirebase(List<String> countnum, String intentType) {
         String productId = databaseReference.child(uid).push().getKey();
         String ProName = productName.getText().toString().trim();
         String ProDes = productDescription.getText().toString().trim();
@@ -269,14 +281,17 @@ public class AddProductActivity extends AppCompatActivity {
                 result.put("timestamp",timestamp);
                 result.put("endTimestamp",endTimestamp);
                 result.put("userId", uid);
-                result.put("productId",productId);
-                for(count = 0; count<imageUriList.size(); count++){
-                    Uri imgUri = imageUriList.get(count);
+                if(intentType.equals("edit")){
+                    editItemSaved(result,countnum,imageUriList.size());
+                }else {
+                    result.put("productId",productId);
+                    for(count = 0; count<imageUriList.size(); count++){
+                        Uri imgUri = imageUriList.get(count);
 //                    final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child(imageUriList.get(count).getLastPathSegment()+"."+System.currentTimeMillis() + "." + getContentResolver());
-                    final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child("image"+count);
-                    databaseReference.child("Products").child(productId).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
+                        final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productId).child("image"+count);
+                        databaseReference.child("Products").child(productId).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
                                 fileRef.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -304,16 +319,68 @@ public class AddProductActivity extends AppCompatActivity {
                                 });
                             }
 //                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddProductActivity.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(AddProductActivity.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        });
+                    }
                 }
             }
         });
+    }
+
+    private void editItemSaved(HashMap<String, Object> result,List<String> countnum,int imagecount) {
+        result.put("productId",productItem.getProductId());
+        a: for(count = countnum.size(); count<imagecount; count++) {
+            String imgname[] = imageUriList.get(count).toString().split("://");
+            boolean b = imgname[0].equals("content");
+            if (b) {
+                Uri imgUri = imageUriList.get(count);
+                final StorageReference fileRef = storageReference.child("ProductImageFolder").child(productItem.getProductId()).child("image" + count);
+                databaseReference.child("Products").child(productItem.getProductId()).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        fileRef.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        HashMap<String, Object> resultimg = new HashMap<>();
+                                        resultimg.put("productImage", uri.toString());
+                                        databaseReference.child("Products").child(productItem.getProductId()).child("Images").push().setValue(resultimg);
+                                        Toast.makeText(AddProductActivity.this, "Product Updated", Toast.LENGTH_SHORT).show();
+                                        pro.dismiss();
+                                        finish();
+                                    }
+                                });
+                            }
+                        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(AddProductActivity.this, "updated Failed !!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddProductActivity.this, "updated Uploading Failed !!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+            }else {
+                break a;
+            }
+        }
+        pro.dismiss();
     }
 
     @Override
