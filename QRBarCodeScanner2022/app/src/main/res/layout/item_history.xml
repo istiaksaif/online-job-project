@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:cardElevation="5sp"
+        app:cardCornerRadius="15sp"
+        app:cardUseCompatPadding="false"
+        android:layout_margin="5sp">
+        <LinearLayout
+            android:id="@+id/constraint_layout_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_code"
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                tools:src="@color/white_redis" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_code_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16sp"
+                    android:layout_marginBottom="10sp"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="18sp"
+                    tools:text="QR Code Scan" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16sp"
+                    android:layout_marginEnd="32sp"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp"
+                    tools:text="5:45 PM, 3 December, 2018"
+                    android:layout_below="@+id/text_view_code_type"/>
+            </RelativeLayout>
+
+<!--            <View-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0sp"-->
+<!--                android:layout_marginStart="16sp"-->
+<!--                android:layout_marginTop="16sp"-->
+<!--                android:layout_marginEnd="16sp"-->
+<!--                android:background="@color/grey"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/image_view_code" />-->
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

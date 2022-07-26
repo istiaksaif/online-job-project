@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Activity.ReferActivity">
+    <RelativeLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_collapseMode="pin"
+            app:contentInsetStartWithNavigation="0sp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/montserrat_alternates"
+            android:text="Refer &amp; Earn"
+            android:textColor="@color/dark"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white_redis"
+        android:layout_below="@id/l1"
+        android:id="@+id/l2"/>
+    <TextView
+        android:id="@+id/networkcheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Internet Connection"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/white"
+        android:background="#5B656F"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:layout_below="@+id/l2"/>
+    <RelativeLayout
+        android:id="@+id/l3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/networkcheck"
+        android:layout_gravity="center"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5sp"
+            android:fontFamily="@font/poppins_bold"
+            android:letterSpacing=".01"
+            android:paddingStart="10sp"
+            android:text="Share something good,"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t1"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:letterSpacing=".01"
+            android:paddingStart="10sp"
+            android:text="refer QR &amp; Bar Code Scanner App"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="350sp"
+        android:layout_below="@+id/l3"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/blank"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ref" />
+    <LinearLayout
+        android:id="@+id/l4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:orientation="horizontal"
+        android:padding="15sp"
+        android:weightSum="1">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/createreferlink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0dp"
+            android:layout_marginEnd="5sp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/textColor"
+                android:fontFamily="@font/montserrat_alternates"
+                android:padding="10sp"
+                android:text="Generate Your Refer Link"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/referbtn"
+            android:layout_width="0sp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0dp"
+            android:layout_marginEnd="5sp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/textColor"
+                android:drawableStart="@drawable/ic_share"
+                android:fontFamily="@font/montserrat_alternates"
+                android:padding="10sp"
+                android:text="Refer"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/copylink"
+            android:layout_width="0sp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="0dp"
+            android:layout_marginStart="5sp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/textColor"
+                android:drawableStart="@drawable/ic_link"
+                android:fontFamily="@font/montserrat_alternates"
+                android:padding="10sp"
+                android:text="Copy Link"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/storereferlink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/textColor"
+            android:fontFamily="@font/montserrat_alternates"
+            android:padding="10sp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15sp"
+        android:weightSum="1"
+        android:layout_below="@+id/l4">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/white_redis"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_medium"
+            android:letterSpacing=".01"
+            android:text="How it works"
+            android:textColor="@color/dark_blue"
+            android:textSize="17sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5sp"
+            android:fontFamily="@font/poppins"
+            android:letterSpacing=".01"
+            android:text="i.  invite your friends to QR &amp; Bar Code Scanner 2022"
+            android:textColor="@color/dark_light"
+            android:textSize="12sp"
+            android:padding="5sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5sp"
+            android:fontFamily="@font/poppins"
+            android:letterSpacing=".01"
+            android:text="ii.  download and 1st time open app using your link you and your friend will get reward"
+            android:textColor="@color/dark_light"
+            android:textSize="12sp"
+            android:padding="5sp"/>
+    </LinearLayout>
+</RelativeLayout>

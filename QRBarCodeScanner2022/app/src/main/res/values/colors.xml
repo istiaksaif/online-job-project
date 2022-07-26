@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/dark_blue</color>
+    <color name="colorPrimaryDark">#334751</color>
+    <color name="colorAccent">#3A4144</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="shadow">#d0d8dc</color>
+    <color name="transparent">#00000000</color>
+    <color name="background">#F5f5f5</color>
+    <color name="pink">#D3454D</color>
+    <color name="white_redis">#F5f5f5</color>
+    <color name="dark">#000000</color>
+    <color name="grey">#979A9A </color>
+    <color name="dark_blue">#353e47</color>
+    <color name="dark_light">#A9AFB5</color>
+    <color name="textColor">#F11E44</color>
+    <color name="highlight">#ff0532</color>
+    <color name="not_found_color">#717171</color>
+    <color name="edittext_hint">#9c9c9c</color>
+    <color name="divider">#edeff2</color>
+    <color name="divider2">#0D333333</color>
+    <color name="transparent_bg">#00000000</color>
+    <color name="design_default_color_primary">@color/dark_blue</color>
+</resources>

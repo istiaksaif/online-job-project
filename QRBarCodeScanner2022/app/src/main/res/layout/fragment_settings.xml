@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_view_play_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:gravity="center"
+            android:text="@string/play_sound"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:layout_alignTop="@+id/switch_compat_play_sound"
+            android:layout_alignBottom="@+id/switch_compat_play_sound"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_compat_play_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="16sp"
+            android:theme="@style/mySwitchTheme"/>
+
+        <View
+            android:id="@+id/view_separator_play_sound"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:layout_below="@+id/text_view_play_sound"/>
+
+        <TextView
+            android:id="@+id/text_view_vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:gravity="center"
+            android:text="@string/vibrate"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:layout_alignTop="@+id/switch_compat_vibrate"
+            android:layout_alignBottom="@+id/switch_compat_vibrate"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_compat_vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="16sp"
+            android:layout_alignParentEnd="true"
+            android:theme="@style/mySwitchTheme"
+            android:layout_below="@+id/view_separator_play_sound"/>
+
+        <View
+            android:id="@+id/view_separator_vibrate"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:layout_below="@+id/text_view_vibrate"/>
+
+        <TextView
+            android:id="@+id/text_view_save_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:gravity="center"
+            android:text="@string/save_history"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:layout_alignTop="@+id/switch_compat_save_history"
+            android:layout_alignBottom="@+id/switch_compat_save_history"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_compat_save_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_separator_vibrate"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="16sp"
+            android:theme="@style/mySwitchTheme"/>
+
+        <View
+            android:id="@+id/view_separator_save_history"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:layout_below="@id/text_view_save_history"/>
+
+        <TextView
+            android:id="@+id/text_view_copy_to_clipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16sp"
+            android:gravity="center"
+            android:text="@string/copy_to_clipboard"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:layout_alignTop="@+id/switch_compat_copy_to_clipboard"
+            android:layout_alignBottom="@+id/switch_compat_copy_to_clipboard" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_compat_copy_to_clipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_separator_save_history"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:layout_marginBottom="16sp"
+            android:theme="@style/mySwitchTheme"/>
+
+        <View
+            android:id="@+id/view_separator_copy_to_clipboard"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:clickable="true"
+            android:onClick="startAboutUsActivity"
+            android:layout_below="@+id/text_view_copy_to_clipboard"/>
+
+        <TextView
+            android:id="@+id/text_view_refer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_separator_copy_to_clipboard"
+            android:clickable="true"
+            android:onClick="startAboutUsActivity"
+            android:paddingStart="16sp"
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp"
+            android:text="@string/refer"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:visibility="gone"/>
+
+        <View
+            android:id="@+id/view_separator_about_us"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:clickable="true"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:layout_below="@+id/text_view_refer"/>
+
+        <TextView
+            android:id="@+id/text_view_rate_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_separator_about_us"
+            android:clickable="true"
+            android:paddingStart="16sp"
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp"
+            android:text="@string/rate"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+        <View
+            android:id="@+id/view_separator_rate_us"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:layout_marginStart="16sp"
+            android:clickable="true"
+            android:layout_marginEnd="16sp"
+            android:background="@color/white_redis"
+            android:layout_below="@+id/text_view_rate_us"/>
+        <TextView
+            android:id="@+id/text_view_privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_separator_rate_us"
+            android:clickable="true"
+            android:paddingStart="16sp"
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp"
+            android:text="@string/privacy_policy"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <View
+            android:id="@+id/view_separator_privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:clickable="true"
+            android:background="@color/white_redis"
+            android:layout_above="@+id/versionname"/>
+
+        <TextView
+            android:id="@+id/versionname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16sp"
+            android:gravity="center"
+            android:paddingStart="16sp"
+            android:paddingTop="16sp"
+            android:paddingBottom="16sp"
+            android:text="Version : 2.1.0"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintVertical_chainStyle="packed" />
+    </RelativeLayout>
+
+</layout>

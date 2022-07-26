@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/scan"
+        android:title="Scan"
+        android:icon="@drawable/ic_scanner"/>
+    <item android:id="@+id/generate"
+        android:title="Generate"
+        android:icon="@drawable/ic_genarate"/>
+    <item android:id="@+id/history"
+        android:title="History"
+        android:icon="@drawable/ic_history"/>
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>
