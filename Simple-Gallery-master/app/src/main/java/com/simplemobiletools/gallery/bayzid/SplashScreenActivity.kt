@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.simplemobiletools.gallery.bayzid.activities.MainActivity
@@ -17,6 +14,7 @@ import com.simplemobiletools.gallery.bayzid.activities.SplashActivity
 class SplashScreenActivity : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
+//    private var appOpenManager: AppOpenManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +23,10 @@ class SplashScreenActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+//        MobileAds.initialize(
+//            this
+//        ) { }
+//        appOpenManager = AppOpenManager(this@App)
         loadInterAd()
         Handler().postDelayed({
             showInterAd()
@@ -65,9 +67,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         var adRequest = AdRequest.Builder().build()
 
-        //ca-app-pub-3940256099942544/1033173712 test id
-        //ca-app-pub-1148814945441421/1526621894 original id
-        InterstitialAd.load(this,"ca-app-pub-1148814945441421/1526621894", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(this,getString(R.string.admob_interstitial_ad_unit_id), adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }

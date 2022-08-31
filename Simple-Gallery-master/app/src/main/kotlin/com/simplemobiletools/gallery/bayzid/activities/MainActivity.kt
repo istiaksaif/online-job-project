@@ -3,22 +3,21 @@ package com.simplemobiletools.gallery.bayzid.activities
 import android.app.Activity
 import android.app.SearchManager
 import android.content.ClipData
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
 import android.provider.MediaStore.Video
+import android.provider.Settings
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
@@ -26,7 +25,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.simplemobiletools.commons.activities.BaseSimpleActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.dialogs.CreateNewFolderDialog
 import com.simplemobiletools.commons.dialogs.FilePickerDialog
@@ -56,8 +58,6 @@ import com.simplemobiletools.gallery.bayzid.models.ThumbnailItem
 import com.simplemobiletools.gallery.bayzid.models.ThumbnailSection
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_media.*
-import kotlinx.android.synthetic.main.dialog_filter_media.*
-import kotlinx.android.synthetic.main.dialog_filter_media.view.*
 import java.io.*
 
 class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperationsListener {
@@ -67,7 +67,6 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
     private val PICK_WALLPAPER = 3
     private val LAST_MEDIA_CHECK_PERIOD = 3000L
     private var mIsGettingMedia = false
-
 
     public class Global {
         companion object {
@@ -139,11 +138,11 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
         loadInterAd()
-        val track = findViewById(R.id.track) as TextView
-
-        if (track.text.toString().equals("restart")){
-            countdown(track)
-        }
+//        val track = findViewById(R.id.track) as TextView
+//
+//        if (track.text.toString().equals("restart")){
+//            countdown(track)
+//        }
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -522,43 +521,49 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
 //    }
 
     private fun showInterAd() {
+        val oneClickSaveData: Int = loadDataOneClickPerOpening(this)
+        if(oneClickSaveData == 0){
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        launchSettings()
+                        loadInterAd()
+                        saveDataOneClick(this@MainActivity,25)
+                    }
 
-        if (mInterstitialAd != null) {
-            mInterstitialAd?.show(this)
-            mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    launchSettings()
-                    loadInterAd()
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        mInterstitialAd = null
+                    }
                 }
 
-                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-
-                }
-
-                override fun onAdShowedFullScreenContent() {
-
-                    mInterstitialAd = null
-                }
+            } else {
+                launchSettings()
             }
-
-        } else {
+        }else{
             launchSettings()
+            var s = 0
+            s = oneClickSaveData - 1
+            Log.d("CheckSN", s.toString())
+            if(s>=0){
+                saveDataOneClick(this,s)
+            }
         }
     }
-
     private fun loadInterAd() {
         var adRequest = AdRequest.Builder().build()
-
-        //ca-app-pub-3940256099942544/1033173712 test id
-        //ca-app-pub-1148814945441421/7958005162 original id
-        InterstitialAd.load(this, "ca-app-pub-1148814945441421/7958005162", adRequest, object : InterstitialAdLoadCallback() {
+        
+        InterstitialAd.load(this, getString(R.string.admob_interstitial_ad_unit_id), adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
 
             override fun onAdLoaded(interstitialAd: InterstitialAd) {
                 mInterstitialAd = interstitialAd
-//                showInterAd()
             }
         })
     }
@@ -579,6 +584,13 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
 
     override fun onResume() {
         super.onResume()
+        val oneClickSaveData: Int = loadDataOneClickPerOpening(this)
+        var s = 0
+        s = oneClickSaveData - 1
+        Log.d("CheckSN", s.toString())
+        if(s>=0){
+            saveDataOneClick(this,s)
+        }
         config.isThirdPartyIntent = false
         mDateFormat = config.dateFormat
         mTimeFormat = getTimeFormat()
@@ -1245,10 +1257,18 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
     private fun itemClicked(path: String) {
         handleLockedFolderOpening(path) { success ->
             if (success) {
-                if (track.text.toString().equals("0")) {
+                val oneClickSaveData: Int = loadDataOneClickPerOpening(this)
+                if(oneClickSaveData == 0){
                     showInterAd1(path)
-                    countdown(track)
+                    saveDataOneClick(this@MainActivity,25)
                 } else {
+                    config.saveFolderGrouping(SHOW_ALL, GROUP_BY_DATE_TAKEN_DAILY or GROUP_DESCENDING)
+                    var s = 0
+                    s = oneClickSaveData - 1
+                    Log.d("CheckSN", s.toString())
+                    if(s>=0){
+                        saveDataOneClick(this,s)
+                    }
                     Intent(this, MediaActivity::class.java).apply {
                         putExtra(SKIP_AUTHENTICATION, true)
                         putExtra(DIRECTORY, path)
@@ -1259,21 +1279,20 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
         }
     }
 
-    private fun countdown(track: TextView) {
-        object : CountDownTimer(240000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                Log.d("Timer", (millisUntilFinished / 1000).toString())
-                track.setText((millisUntilFinished / 1000).toString())
-            }
-
-            override fun onFinish() {
-                track.setText("0")
-            }
-        }.start()
-    }
+//    private fun countdown(track: TextView) {
+//        object : CountDownTimer(1200000, 1000) {
+//            override fun onTick(millisUntilFinished: Long) {
+//                Log.d("Timer", (millisUntilFinished / 1000).toString())
+//                track.setText((millisUntilFinished / 1000).toString())
+//            }
+//
+//            override fun onFinish() {
+//                track.setText("0")
+//            }
+//        }.start()
+//    }
 
     private fun showInterAd1(path: String) {
-
         if (mInterstitialAd != null) {
             mInterstitialAd?.show(this)
             mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
@@ -1918,6 +1937,45 @@ class MainActivity : SimpleActivity(), DirectoryOperationsListener, MediaOperati
             add(Release(359, R.string.faq_16_text))
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
         }
+    }
+
+    fun createlink() {
+        Log.e("main", "create link ")
+        val dynamicLink: DynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLink(Uri.parse("https://play.google.com/store/apps/details?id=com.bayzid.qrbarcodescanner2022"))
+            .setDynamicLinkDomain("qrbarcodescanner2022.page.link")
+            .setAndroidParameters(Builder().build())
+            .buildDynamicLink()
+        val dynamicLinkUri: Uri = dynamicLink.getUri()
+        Log.e("main", "  Long refer " + dynamicLink.getUri())
+        val sharelinktext = "https://qrbarcodescanner2022.page.link/?" +
+            "link=https://play.google.com/store/apps/details?id=com.bayzid.qrbarcodescanner2022" +
+            "&apn=" + packageName +
+            "&st=" + "My Refer Link" +
+            "&sd=" + "Reward will Given based on ongoing offer" +
+            "&si=" + getDrawable(R.drawable.sample_logo)
+        // shorten the link
+        val shortLinkTask: Task<ShortDynamicLink> = FirebaseDynamicLinks.getInstance().createDynamicLink() //.setLongLink(dynamicLink.getUri())
+            .setLongLink(Uri.parse(sharelinktext))
+            .buildShortDynamicLink()
+            .addOnCompleteListener(this, OnCompleteListener<Any> { task ->
+                if (task.isSuccessful) {
+                    // Short link created
+                    val shortLink: Uri = task.result.getShortLink()
+                    val flowchartLink: Uri = task.result.getPreviewLink()
+                    Log.e("main ", "short link $shortLink")
+                    storereferlink.setText(shortLink.toString())
+                    generateReferLink.setVisibility(View.GONE)
+                    refer.setVisibility(View.VISIBLE)
+                    copyLink.setVisibility(View.VISIBLE)
+                    val result = HashMap<String, Any>()
+                    result["referLink"] = shortLink.toString()
+                    val token: String = Settings.Secure.getString(this@MainActivity.getContentResolver(), Settings.Secure.ANDROID_ID)
+                    databaseReference.child("usersData").child(token).updateChildren(result)
+                } else {
+                    Log.e("main", " error " + task.exception)
+                }
+            })
     }
 }
 

@@ -2,6 +2,7 @@ package com.simplemobiletools.gallery.bayzid
 
 import android.app.Application
 import com.github.ajalt.reprint.core.Reprint
+import com.google.android.gms.ads.MobileAds
 import com.simplemobiletools.commons.extensions.checkUseEnglish
 import com.squareup.picasso.Downloader
 import com.squareup.picasso.Picasso

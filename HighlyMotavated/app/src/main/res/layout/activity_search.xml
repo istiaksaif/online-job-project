@@ -16,16 +16,20 @@
             app:layout_collapseMode="pin"
             app:contentInsetStartWithNavigation="0dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchview"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="5dp"
-            app:searchIcon="@drawable/ic_search"
-            app:queryHint="type here"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/toolbar"
+            android:background="@drawable/bg_round"
             app:iconifiedByDefault="false"
-            android:background="@drawable/bg_round"/>
+            app:queryHint="type here"
+            app:searchIcon="@drawable/ic_search" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

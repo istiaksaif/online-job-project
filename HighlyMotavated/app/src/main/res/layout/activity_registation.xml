@@ -183,14 +183,15 @@
         android:layout_marginBottom="35dp"
         android:paddingStart="20sp"
         android:paddingEnd="20sp">
+
         <Button
             android:id="@+id/reg_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/blank"
             android:background="@drawable/reg_button"
-            app:backgroundTint="@null"/>
+            android:text="@string/blank"
+            app:backgroundTint="@null" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

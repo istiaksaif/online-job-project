@@ -3,9 +3,11 @@
     <string name="file_provider_authority" translatable="false">com.bayzid.qrbarcodescanner2022.fileprovider</string>
     <string name="admob_app_id">ca-app-pub-1148814945441421~2029208790</string>
     <string name="admob_banner_ad_unit_id">ca-app-pub-1148814945441421/4169105219</string>
-<!--    <string name="admob_test_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
-<!--    <string name="admob_test_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>-->
-    <string name="admob_interstitial_ad_unit_id">ca-app-pub-1148814945441421/7908770173</string>
+<!--    <string name="admob_interstitial_ad_unit_id">ca-app-pub-1148814945441421/7908770173</string>-->
+<!--    test-->
+<!--    <string name="admob_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+<!--    test-->
     <string name="delete">Delete</string>
     <!--Essentials-->
     <string name="please_wait">Please Wait…</string>

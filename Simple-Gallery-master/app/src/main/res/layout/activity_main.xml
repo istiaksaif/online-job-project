@@ -88,12 +88,12 @@
 
             </com.google.android.gms.ads.AdView>
 <!--            ca-app-pub-3940256099942544/6300978111-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="restart"
-                android:id="@+id/track"
-                android:visibility="gone"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="restart"-->
+<!--                android:id="@+id/track"-->
+<!--                android:visibility="gone"/>-->
         </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 
 

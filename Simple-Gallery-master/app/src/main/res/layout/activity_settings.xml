@@ -1146,19 +1146,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Version" />
+
                 <com.simplemobiletools.commons.views.MyTextView
                     android:id="@+id/version_2"
                     style="@style/SettingsTextValueStyle"
                     android:layout_width="match_parent"
-                    android:textColor="@color/hint_black"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/version_1"
-                    android:text="12.0.0" />
+                    android:text="13.0.0"
+                    android:textColor="@color/hint_black" />
 
             </RelativeLayout>
         </LinearLayout>
-
     </LinearLayout>
-
-
 </ScrollView>

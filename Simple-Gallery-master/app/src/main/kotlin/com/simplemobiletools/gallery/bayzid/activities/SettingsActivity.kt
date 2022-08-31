@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.LinearLayout
@@ -48,57 +49,61 @@ class SettingsActivity : SimpleActivity() {
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)
-        loadInterAd()
+//        loadInterAd()
         settings_holder = findViewById(R.id.settings_holder)
         privacy = findViewById(R.id.privacy)
         privacy.setOnClickListener(View.OnClickListener {
             showInterAd()
         })
-
-
     }
     private fun showInterAd() {
+        val oneClickSaveData: Int = loadDataOneClickPerOpening(this)
+        if(oneClickSaveData == 0){
+            if (mInterstitialAd!=null){
+                mInterstitialAd?.show(this)
+                mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        val intent = Intent(applicationContext, PrivacyPolicy::class.java)
+                        startActivity(intent)
+                        saveDataOneClick(this@SettingsActivity,10)
+                    }
 
-        if (mInterstitialAd!=null){
-            mInterstitialAd?.show(this)
-            mInterstitialAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    val intent = Intent(applicationContext, PrivacyPolicy::class.java)
-                    startActivity(intent)
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        mInterstitialAd = null
+                    }
                 }
 
-                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-
-                }
-
-                override fun onAdShowedFullScreenContent() {
-
-                    mInterstitialAd = null
-                }
             }
-
-        }
-        else{
+            else{
+                val intent = Intent(applicationContext, PrivacyPolicy::class.java)
+                startActivity(intent)
+            }
+        }else{
             val intent = Intent(applicationContext, PrivacyPolicy::class.java)
             startActivity(intent)
+//            var s = 0
+//            s = oneClickSaveData - 1
+//            Log.d("CheckSN", s.toString())
+//            if(s>=0){
+//                saveDataOneClick(this,s)
+//            }
         }
-
     }
-
     private fun loadInterAd() {
 
         var adRequest = AdRequest.Builder().build()
 
-        //ca-app-pub-3940256099942544/1033173712 test id
-        //ca-app-pub-1148814945441421/2514106790 original id
-        InterstitialAd.load(this,"ca-app-pub-1148814945441421/2514106790", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(this,getString(R.string.admob_interstitial_ad_unit_id), adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
 
             override fun onAdLoaded(interstitialAd: InterstitialAd) {
                 mInterstitialAd = interstitialAd
-//                showInterAd()
             }
 
         })

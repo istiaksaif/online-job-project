@@ -16,8 +16,8 @@ android {
         applicationId "com.simplemobiletools.gallery.bayzid"
         minSdk 21
         targetSdk 31
-        versionCode 12
-        versionName "12.0.0"
+        versionCode 13
+        versionName "13.0.0"
         setProperty("archivesBaseName", "gallery-$versionCode")
         vectorDrawables.useSupportLibrary = true
     }
@@ -100,7 +100,12 @@ dependencies {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.firebase:firebase-dynamic-links-ktx:21.0.1'
     compileOnly 'com.squareup.okhttp3:okhttp:4.9.0'
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 

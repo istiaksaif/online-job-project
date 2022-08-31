@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">dermaLab</string>
+    <string name="app_name">SkinLab</string>
     <string name="blank"> </string>
+    <string name="ss0">The scientific term for well-balanced skin is eudermic. The T-zone (forehead, chin and nose) may be a bit oily, but overall sebum and moisture is balanced and the skin is neither too oily nor too dry. How to identify normal skin. A velvety, soft and smooth texture is a sign for a healthy and radiant skin.</string>
+    <string name="ss1">Some of the most common skin diseases include: Acne, blocked skin follicles that lead to oil, bacteria and dead skin buildup in your pores. Alopecia areata, losing your hair in small patches. Atopic dermatitis (eczema), dry, itchy skin that leads to swelling, cracking or scaliness.</string>
     <string name="s0">A chronic skin disease that causes persistent redness over the areas of the face and nose that normally blush: mainly the forehead, the chin, and the lower half of the nose.</string>
     <string name="s1">Eczema is a condition that makes your skin red and itchy. It is common in children but can occur at any age. Atopic dermatitis is long lasting (chronic) and tends to flare periodically.</string>
     <string name="s2">Herpes is an infection that is caused by a herpes simplex virus (HSV). Oral herpes causes cold sores around the mouth or face. Genital herpes affects the genitals, buttocks or anal area. It affects the genitals, buttocks or anal area.</string>

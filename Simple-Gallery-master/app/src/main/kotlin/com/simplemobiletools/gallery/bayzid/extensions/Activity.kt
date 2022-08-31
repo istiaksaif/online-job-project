@@ -82,7 +82,17 @@ fun SimpleActivity.launchSettings() {
     hideKeyboard()
     startActivity(Intent(applicationContext, SettingsActivity::class.java))
 }
-
+fun saveDataOneClick(activity: Activity, oneClickPerOpening: Int) {
+    val sharedPreferences = activity.getSharedPreferences("CheckFirstTimeOneClick", AppCompatActivity.MODE_PRIVATE)
+//    checkFirstTime = java.lang.Boolean.valueOf(sharedPreferences.getBoolean("CheckFirstTimeOneClick", true))
+    val editor = sharedPreferences.edit()
+    editor.putInt("oneClickPerOpening", oneClickPerOpening)
+    editor.apply()
+}
+fun loadDataOneClickPerOpening(activity: Activity): Int {
+    val sharedPreferences = activity.getSharedPreferences("CheckFirstTimeOneClick", AppCompatActivity.MODE_PRIVATE)
+    return sharedPreferences.getInt("oneClickPerOpening", 0)
+}
 fun SimpleActivity.launchAbout() {
     val licenses = LICENSE_GLIDE or LICENSE_CROPPER or LICENSE_RTL or LICENSE_SUBSAMPLING or LICENSE_PATTERN or LICENSE_REPRINT or LICENSE_GIF_DRAWABLE or
         LICENSE_PICASSO or LICENSE_EXOPLAYER or LICENSE_PANORAMA_VIEW or LICENSE_SANSELAN or LICENSE_FILTERS or LICENSE_GESTURE_VIEWS or

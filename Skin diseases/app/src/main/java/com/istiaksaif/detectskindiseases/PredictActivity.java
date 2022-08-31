@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.istiaksaif.detectskindiseases.ml.SkinDiseases;
+import com.istiaksaif.detectskindiseases.ml.ScratchModel;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
@@ -131,7 +131,8 @@ public class PredictActivity extends AppCompatActivity {
 
     public void classifyImage(Bitmap image){
         try {
-            SkinDiseases model = SkinDiseases.newInstance(this);
+//            SkinDiseases model = SkinDiseases.newInstance(this);
+            ScratchModel model = ScratchModel.newInstance(this);
 
             // Creates inputs for reference.
             TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
@@ -156,7 +157,8 @@ public class PredictActivity extends AppCompatActivity {
             inputFeature0.loadBuffer(byteBuffer);
 
             // Runs model inference and gets result.
-            SkinDiseases.Outputs outputs = model.process(inputFeature0);
+//            SkinDiseases.Outputs outputs = model.process(inputFeature0);
+            ScratchModel.Outputs outputs = model.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
             float[] confidences = outputFeature0.getFloatArray();
@@ -169,33 +171,35 @@ public class PredictActivity extends AppCompatActivity {
                     maxPos = i;
                 }
             }
-            String[] classes = {"Acne & Rosacea", "Eczema", "Herpes HPV", "Melanoma Skin Cancer"
-                    , "Normal Skin", "Actinic Keratosis", "Basal Cell Carcinoma","Bengin"
-                    ,"Dermatofibroma","Mallgnant","Nevus"};
+//            String[] classes = {"Acne & Rosacea", "Eczema", "Herpes HPV", "Melanoma Skin Cancer"
+//                    , "Normal Skin", "Actinic Keratosis", "Basal Cell Carcinoma","Bengin"
+//                    ,"Dermatofibroma","Mallgnant","Nevus"};
+            String[] classes = {"Normal","Abnormal"};
             predictResult.setVisibility(View.VISIBLE);
             predictResult.setText(classes[maxPos]);
             predictResultPercent.setText(String.format("%.1f%%", confidences[maxPos] * 100));
 
             description.setVisibility(View.VISIBLE);
             if(maxPos==0){
-                description.setText(R.string.s0);
+                description.setText(R.string.ss0);
             }else if(maxPos==1){
-                description.setText(R.string.s1);
-            }else if(maxPos==2){
-                description.setText(R.string.s2);
-            }else if(maxPos==3){
-                description.setText(R.string.s3);
-            }else if(maxPos==5){
-                description.setText(R.string.s5);
-            }else if(maxPos==6){
-                description.setText(R.string.s6);
-            }else if(maxPos==7){
-                description.setText(R.string.s7);
-            }else if(maxPos==9){
-                description.setText(R.string.s9);
-            }else if(maxPos==10){
-                description.setText(R.string.s10);
+                description.setText(R.string.ss1);
             }
+//            else if(maxPos==2){
+//                description.setText(R.string.s2);
+//            }else if(maxPos==3){
+//                description.setText(R.string.s3);
+//            }else if(maxPos==5){
+//                description.setText(R.string.s5);
+//            }else if(maxPos==6){
+//                description.setText(R.string.s6);
+//            }else if(maxPos==7){
+//                description.setText(R.string.s7);
+//            }else if(maxPos==9){
+//                description.setText(R.string.s9);
+//            }else if(maxPos==10){
+//                description.setText(R.string.s10);
+//            }
 //            predictResultPercent.setText(String.format("%.1f%%", confidences[3] * 100));
 //            predictResultPercent.setText(String.format("%.1f%%", confidences[4] * 100));
 //            predictResultPercent.setText(String.format("%.1f%%", confidences[5] * 100));
@@ -226,18 +230,19 @@ public class PredictActivity extends AppCompatActivity {
                 l1.setBackground(getDrawable(R.color.green));
                 confidence1.setTextColor(getResources().getColor(R.color.white));
                 confidencePercent1.setTextColor(getResources().getColor(R.color.white));
-            }else if (s.equals("l2")) {
-                l2.setBackground(getDrawable(R.color.pink));
-                confidence2.setTextColor(getResources().getColor(R.color.white));
-                confidencePercent2.setTextColor(getResources().getColor(R.color.white));
             }
+//            else if (s.equals("l2")) {
+//                l2.setBackground(getDrawable(R.color.pink));
+//                confidence2.setTextColor(getResources().getColor(R.color.white));
+//                confidencePercent2.setTextColor(getResources().getColor(R.color.white));
+//            }
 
             confidence.setText(classes[0]);
-            confidencePercent.setText(String.format("%.1f%%", confidences[0] * 100));
+            confidencePercent.setText(String.format("%.1f%%", confidences[0]));
             confidence1.setText(classes[1]);
-            confidencePercent1.setText(String.format("%.1f%%", confidences[1] * 100));
-            confidence2.setText(classes[2]);
-            confidencePercent2.setText(String.format("%.1f%%", confidences[2] * 100));
+            confidencePercent1.setText(String.format("%.1f%%", confidences[1]));
+//            confidence2.setText(classes[2]);
+//            confidencePercent2.setText(String.format("%.1f%%", confidences[2] * 100));
             loading.setVisibility(View.GONE);
 
             model.close();
